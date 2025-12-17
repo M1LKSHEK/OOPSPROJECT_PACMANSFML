@@ -8,46 +8,38 @@
 
 using namespace std;
 
-// --- Constants ---
 const int TILE = 25; 
 const int MAP_WIDTH = 21;
 const int MAP_HEIGHT = 21; 
 const int WINDOW_OFFSET_X = 50;
 const int WINDOW_OFFSET_Y = 50;
 
-// --- Entity Structure ---
-// Easy to explain: A simple container for any moving object (Player or Ghost)
 struct Entity {
-    int x, y;            // Grid coordinates
-    float px, py;        // Pixel coordinates (for smooth drawing)
-    sf::Color originalColor; // Entity color (Fixed name mismatch)
-    int startX, startY;  // Respawn position
-    bool isDead;         // State flag
-    int dirX, dirY;      // Current direction
+    int x, y;            
+    float px, py;        
+    sf::Color originalColor; 
+    int startX, startY;  
+    bool isDead;         
+    int dirX, dirY;      
 };
 
-// --- Game Class ---
-// Encapsulates the entire game logic, making main() very clean.
+
 class PacmanGame {
 private:
     sf::RenderWindow window;
     vector<string> mapData;
-    vector<string> originalMap; // Backup for resetting
+    vector<string> originalMap; 
     Entity player;
     vector<Entity> ghosts;
     
-    // Game State
     bool gameStarted;
     int score;
     int frameCount;
     int frightenedTimer;
     
-    // Input Buffer
-    int reqDirX, reqDirY; // Requested direction
+    int reqDirX, reqDirY; 
     float pacRotation;
 
-    // --- Map Definition ---
-    // 1=Wall, 0=Dot, 2=Power Pellet, G=Ghost House, P=Player
     const vector<string> INITIAL_MAP = {
         "111111111111111111111",
         "120000000100000000021",
@@ -87,7 +79,6 @@ public:
     }
 
 private:
-    // --- Initialization ---
     void initGame() {
         mapData = INITIAL_MAP;
         originalMap = INITIAL_MAP;
@@ -381,4 +372,5 @@ int main() {
     PacmanGame game;
     game.run();
     return 0;
+
 }
